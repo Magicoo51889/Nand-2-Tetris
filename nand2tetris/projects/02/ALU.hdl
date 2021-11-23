@@ -52,14 +52,14 @@ CHIP ALU {
 
     And16(a=mux_x_two, b=mux_y_two, out=and_out);
 
-    Add16(a=mux_x_two, b=Not16(mux_y_two), out=add_out);
+    Not16(in=mux_y_two, out=not_mux_y_two);
+    Add16(a=mux_x_two, b=not_mux_y_two, out=add_out);
     Mux16(a=and_out, b=add_out, sel=f, out=f_out);
 
-    Mux16(a=Not16(f_out), b=f_out, sel=no, out=zr);
+    Not16(in=f_out, out=not_f_out);
+    Mux16(a=not_f_out, b=f_out, sel=no, out=out);
 
-    And16(a[0..15]=true, b=no_out, out[0..14]=ng);
+    And16(a[0..15]=true, b=no, out[0..14]=ng);
 
-    Or16(a=no_out, b[0..15]=false, out=out);
-
-
+    Or16(a=no, b[0..15]=false, out=zr);
 }
