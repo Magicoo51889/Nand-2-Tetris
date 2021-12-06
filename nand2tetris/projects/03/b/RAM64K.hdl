@@ -5,7 +5,6 @@ CHIP RAM64K {
     OUT out[16];
 
     PARTS:
-
     DMux4Way(in=load, sel=address[14..15], a=a, b=b, c=c, d=d);
 
     RAM16K(in=in, load=a, address=address[0..13], out=outa);
