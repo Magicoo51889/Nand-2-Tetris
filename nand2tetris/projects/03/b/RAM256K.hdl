@@ -1,0 +1,16 @@
+// File name: projects/03/b/RAM256K.hdl
+
+CHIP RAM256K {
+    IN in[16], load, address[18];
+    OUT out[16];
+
+    PARTS:
+    DMux4Way(in=load, sel=address[16..17], a=a, b=b, c=c, d=d);
+
+    RAM64K(in=in, load=a, address=address[0..15], out=outa);
+    RAM64K(in=in, load=b, address=address[0..15], out=outb);
+    RAM64K(in=in, load=c, address=address[0..15], out=outc);
+    RAM64K(in=in, load=d, address=address[0..15], out=outd);
+
+    Mux4Way16(a=outa, b=outb, c=outc, d=outd, sel=address[16..17], out=out[0..15]);
+}
