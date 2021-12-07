@@ -12,4 +12,7 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
-    
+@17
+D=A
+@100
+M=D
